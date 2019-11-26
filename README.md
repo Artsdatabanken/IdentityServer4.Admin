@@ -28,7 +28,7 @@ Update-Database -context IdentityServerPersistedGrantDbContext
 ```
 
 ### Seed db with default test-data
-Temporary uncomment line 24 in Skoruba.IdentityServer4.Admin/Program.cs and start the project, or trart the project with commandline argument "/seed"
+Temporary uncomment line 24 in Skoruba.IdentityServer4.Admin/Program.cs and start the project, or start the project with commandline argument "/seed"
 ```<language>
 // await DbMigrationHelpers.EnsureSeedData<IdentityServerConfigurationDbContext, AdminIdentityDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, UserIdentity, UserIdentityRole>(host);
 ```
