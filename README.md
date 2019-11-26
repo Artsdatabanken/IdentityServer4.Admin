@@ -1,7 +1,7 @@
 # Artsdatabanken/IdentityServer4
 [Forked from skoruba/IdentityServer4.Admin](https://github.com/skoruba/IdentityServer4.Admin)
 
-Dockerised version of IdentityServer4 and IdentityServer4.Admin
+Dockerized version of IdentityServer4 and IdentityServer4.Admin
 
 ## How to run locally with docker
 ### Edit the connection strings to point to your local db in the two Dockerfiles
