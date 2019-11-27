@@ -99,6 +99,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
         {
             var smtpConfiguration = configuration.GetSection(nameof(SmtpConfiguration)).Get<SmtpConfiguration>();
             var sendGridConfiguration = configuration.GetSection(nameof(SendgridConfiguration)).Get<SendgridConfiguration>();
+            var emailApiConfiguration = configuration.GetSection(nameof(EmailApiConfiguration)).Get<EmailApiConfiguration>();
 
             if (sendGridConfiguration != null && !string.IsNullOrWhiteSpace(sendGridConfiguration.ApiKey))
             {
@@ -110,6 +111,11 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
             {
                 services.AddSingleton(smtpConfiguration);
                 services.AddTransient<IEmailSender, SmtpEmailSender>();
+            }
+            else if (emailApiConfiguration != null && !string.IsNullOrWhiteSpace(emailApiConfiguration.Url))
+            {
+                services.AddSingleton(emailApiConfiguration);
+                services.AddTransient<IEmailSender, EmailApiSender>();
             }
             else
             {
