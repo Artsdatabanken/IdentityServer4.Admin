@@ -5,3 +5,9 @@ dotnet: 2.2
 script:
  - docker build --tag artsdatabanken/identity -f "src/Skoruba.IdentityServer4.STS.Identity/Dockerfile" . 
  - docker build --tag artsdatabanken/identityadmin -f "src/Skoruba.IdentityServer4.Admin/Dockerfile" . 
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master

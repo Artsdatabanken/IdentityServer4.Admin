@@ -33,7 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skoruba.IdentityServer4.Adm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skoruba.IdentityServer4.Admin.EntityFramework.Shared", "src\Skoruba.IdentityServer4.Admin.EntityFramework.Shared\Skoruba.IdentityServer4.Admin.EntityFramework.Shared.csproj", "{E18F8C70-7448-4039-9D78-1369D7F498EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skoruba.IdentityServer4.Admin.EntityFramework.Extensions", "src\Skoruba.IdentityServer4.Admin.EntityFramework.Extensions\Skoruba.IdentityServer4.Admin.EntityFramework.Extensions.csproj", "{2DD3CB7D-462E-4039-B684-81B1E88C7C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skoruba.IdentityServer4.Admin.EntityFramework.Extensions", "src\Skoruba.IdentityServer4.Admin.EntityFramework.Extensions\Skoruba.IdentityServer4.Admin.EntityFramework.Extensions.csproj", "{2DD3CB7D-462E-4039-B684-81B1E88C7C6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D736204-485A-42EA-B0EF-BBE5A81A305F}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		deploy.sh = deploy.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
