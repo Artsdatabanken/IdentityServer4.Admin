@@ -62,6 +62,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                 {
                     var supportedCultures = new[]
                     {
+                        new CultureInfo("nb"),
                         new CultureInfo("en"),
                         new CultureInfo("fa"),
                         new CultureInfo("ru"),
@@ -69,7 +70,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                         new CultureInfo("zh")
                     };
 
-                    opts.DefaultRequestCulture = new RequestCulture("en");
+                    opts.DefaultRequestCulture = new RequestCulture("nb");
                     opts.SupportedCultures = supportedCultures;
                     opts.SupportedUICultures = supportedCultures;
                 });
