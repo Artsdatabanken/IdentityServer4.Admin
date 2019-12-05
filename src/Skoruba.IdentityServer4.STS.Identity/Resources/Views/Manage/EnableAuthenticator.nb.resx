@@ -136,7 +136,7 @@
     <value>Skann QR-koden eller skriv inn denne koden</value>
   </data>
   <data name="ScanQRSubTitle" xml:space="preserve">
-    <value>i din tofaktor autentiseringsapp. Mellomrom og store/små bokstaver ar valgfritt.</value>
+    <value>i din tofaktor-autentiseringsapp. Mellomrom og store/små bokstaver er valgfritt.</value>
   </data>
   <data name="Info" xml:space="preserve">
     <value>Når du har skannet QR-koden eller tastet inn nøkkelen over, vil tofaktorautentiseringsapplikasjonen din gi deg
