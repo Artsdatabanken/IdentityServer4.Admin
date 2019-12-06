@@ -174,6 +174,11 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                     {
                         return View("Lockout");
                     }
+
+                    if (result.IsNotAllowed && await _userManager.CheckPasswordAsync(user, model.Password) && await _userManager.IsEmailConfirmedAsync(user) == false)
+                    {
+                        return View("EmailNotConfirmed");
+                    }
                 }
                 await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
@@ -253,6 +258,14 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmailSent(string email)
+        {
+            await Task.CompletedTask;
+            return View("ConfirmEmailSent", email);
         }
 
         [HttpGet]
@@ -567,9 +580,11 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                 var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, HttpContext.Request.Scheme);
 
                 await _emailSender.SendEmailAsync(model.Email, _localizer["ConfirmEmailTitle"], _localizer["ConfirmEmailBody", HtmlEncoder.Default.Encode(callbackUrl)]);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                return RedirectToLocal(returnUrl);
+                //return RedirectToLocal(returnUrl);
+
+                return RedirectToAction("ConfirmEmailSent", new { email = model.Email });
             }
 
             AddErrors(result);
