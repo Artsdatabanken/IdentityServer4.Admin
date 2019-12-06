@@ -5,6 +5,7 @@
 // Modified by Jan Škoruba
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
@@ -576,6 +577,15 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+                var claimsToAdd = new List<Claim>
+                {
+                    new Claim(JwtClaimTypes.GivenName, model.FirstName),
+                    new Claim(JwtClaimTypes.FamilyName, model.LastName),
+                    new Claim(JwtClaimTypes.Name, $"{model.FirstName} {model.LastName}")
+                };
+
+                await _userManager.AddClaimsAsync(user, claimsToAdd);
+
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, HttpContext.Request.Scheme);
 

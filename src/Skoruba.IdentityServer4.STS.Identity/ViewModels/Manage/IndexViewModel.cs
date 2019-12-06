@@ -17,9 +17,16 @@ namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Manage
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
-        [MaxLength(255)]
-        [Display(Name = "Full Name")]
-        public string Name { get; set; }
+
+        [MaxLength(127)]
+        [Display(Name = "First Name")]
+        [Required]
+        public string FirstName { get; set; }
+
+        [MaxLength(128)]
+        [Display(Name = "Last Name")]
+        [Required]
+        public string LastName { get; set; }
 
         [MaxLength(255)]
         [Display(Name = "Website")]

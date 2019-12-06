@@ -3,6 +3,8 @@
     public class OpenIdProfile
     {
         public string FullName { get; internal set; }
+        public string FirstName { get; internal set; }
+        public string LastName { get; internal set; }
         public string Website { get; internal set; }
         public string Profile { get; internal set; }
         public string StreetAddress { get; internal set; }
