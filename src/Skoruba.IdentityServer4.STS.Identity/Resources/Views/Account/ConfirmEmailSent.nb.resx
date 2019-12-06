@@ -121,7 +121,7 @@
     <value>Bekreft e-postadressen</value>
   </data>
   <data name="ClickLinkToActivate" xml:space="preserve">
-    <value>For å aktivere kontoen må bekrefte e-postadressen ved å du klikke på lenken i denne e-posten.</value>
+    <value>For å aktivere kontoen må e-postadressen bekreftes ved å klikke på lenken i e-posten.</value>
   </data>
   <data name="EmailSentTo" xml:space="preserve">
     <value>En e-post er sendt til</value>

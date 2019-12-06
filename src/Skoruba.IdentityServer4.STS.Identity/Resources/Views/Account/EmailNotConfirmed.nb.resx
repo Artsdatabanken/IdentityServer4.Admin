@@ -121,6 +121,6 @@
     <value>E-postadressen er ikke bekreftet</value>
   </data>
   <data name="EmailNotConfirmedMessage" xml:space="preserve">
-    <value>For å aktivere kontoen din må du bekrefte e-postadressen ved å klikke på lenken i e-posten som ble sendt til e-postadressen du har oppgitt.</value>
+    <value>For å aktivere kontoen din må e-postadressen bekreftes ved å klikke på lenken i e-posten som ble sendt til e-postadressen du har oppgitt.</value>
   </data>
 </root>
