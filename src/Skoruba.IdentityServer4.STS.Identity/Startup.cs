@@ -54,6 +54,12 @@ namespace Skoruba.IdentityServer4.STS.Identity
 
             // Add authorization policies for MVC
             services.AddAuthorizationPolicies();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.AllowAnyOrigin());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -64,6 +70,8 @@ namespace Skoruba.IdentityServer4.STS.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowOrigin");
 
             // Handle deployment behind a reverse proxy
             // https://github.com/IdentityServer/IdentityServer4/issues/1331
