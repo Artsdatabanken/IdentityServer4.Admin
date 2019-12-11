@@ -121,10 +121,10 @@
     <value>Tilbakestill passord</value>
   </data>
   <data name="ConfirmEmailTitle" xml:space="preserve">
-    <value>Bekreft din e-postadresse</value>
+    <value>Aktiver din konto hos Artsdatabanken</value>
   </data>
   <data name="ConfirmEmailBody" xml:space="preserve">
-    <value>Bekreft kontoen ved å &lt;a href='{0}'&gt;klikke her&lt;/a&gt;.</value>
+    <value>Bekreft din e-postadresse ved å &lt;a href='{0}'&gt;klikke her&lt;/a&gt;.</value>
   </data>
   <data name="EmailNotFound" xml:space="preserve">
     <value>Brukeren eksisterer ikke eller blir ikke bekreftet</value>
