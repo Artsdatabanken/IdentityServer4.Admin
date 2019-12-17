@@ -63,11 +63,11 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                     var supportedCultures = new[]
                     {
                         new CultureInfo("nb"),
-                        new CultureInfo("en"),
-                        new CultureInfo("fa"),
-                        new CultureInfo("ru"),
-                        new CultureInfo("sv"),
-                        new CultureInfo("zh")
+                        new CultureInfo("en")
+                        //new CultureInfo("fa"),
+                        //new CultureInfo("ru"),
+                        //new CultureInfo("sv"),
+                        //new CultureInfo("zh")
                     };
 
                     opts.DefaultRequestCulture = new RequestCulture("nb");
@@ -122,6 +122,17 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
             {
                 services.AddSingleton<IEmailSender, EmailSender>();
             }
+        }
+
+        /// <summary>
+        /// Add appearance configuration
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static void AddAppearanceConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            var appearanceConfiguration = configuration.GetSection(nameof(AppearanceConfiguration)).Get<AppearanceConfiguration>();
+            services.AddSingleton(appearanceConfiguration);
         }
 
         /// <summary>

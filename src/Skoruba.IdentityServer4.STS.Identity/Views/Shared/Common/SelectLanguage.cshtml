@@ -7,7 +7,7 @@
 @{
 	var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 	var cultureItems = LocOptions.Value.SupportedUICultures
-		.Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+		.Select(c => new SelectListItem { Value = c.Name, Text =(c.Name == "nb" ? "Norsk bokmål" : c.Name == "en" ? "English" : c.DisplayName) })
 		.ToList();
 	var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
 }

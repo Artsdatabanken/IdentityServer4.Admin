@@ -139,6 +139,6 @@
     <value>Nedenfor er listen over applikasjoner som har gitt tilgang til dine data, og navnene på dataene de har tilgang til.</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Applikasjonstilganger</value>
+    <value>Lagrede tilganger</value>
   </data>
 </root>

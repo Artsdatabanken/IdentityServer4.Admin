@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Skoruba.IdentityServer4.STS.Identity.Configuration
 @inject IViewLocalizer Localizer
+@inject AppearanceConfiguration AppearanceConfiguration
 @model Skoruba.IdentityServer4.STS.Identity.ViewModels.Account.LogoutViewModel
 
 <div class="logout-container">
@@ -9,7 +11,7 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-			<p>@Localizer["Message"]</p>
+			<p>@Localizer["Message"] @AppearanceConfiguration.ApplicationTitle?</p>
 			<form asp-action="Logout">
 				<input type="hidden" name="logoutId" value="@Model.LogoutId" />
 				<fieldset>
