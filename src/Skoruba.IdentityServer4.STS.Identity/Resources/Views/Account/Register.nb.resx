@@ -144,4 +144,7 @@
   <data name="FirstName" xml:space="preserve">
     <value>Fornavn</value>
   </data>
+  <data name="PasswordRequirements" xml:space="preserve">
+    <value>(Må bestå av minst 6 tegn, store og små bokstaver, samt tall og spesialtegn)</value>
+  </data>
 </root>
