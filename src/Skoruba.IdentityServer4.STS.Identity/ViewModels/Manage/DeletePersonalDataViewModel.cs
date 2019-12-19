@@ -7,7 +7,8 @@ namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Manage
         public bool RequirePassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Required]
+        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
     }
 }

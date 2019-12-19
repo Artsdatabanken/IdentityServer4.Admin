@@ -4,7 +4,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
 {
     public class LoginWith2faViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} is required.")]
         [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Text)]
         public string TwoFactorCode { get; set; }

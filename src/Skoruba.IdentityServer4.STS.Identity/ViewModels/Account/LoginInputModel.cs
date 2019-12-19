@@ -10,9 +10,11 @@ namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
 {
     public class LoginInputModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = "Username")]
         public string Username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} is required.")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
         public bool RememberLogin { get; set; }
         public string ReturnUrl { get; set; }

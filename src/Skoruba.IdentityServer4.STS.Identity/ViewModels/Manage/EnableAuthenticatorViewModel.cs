@@ -5,7 +5,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Manage
 {
     public class EnableAuthenticatorViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "{0} is required.")]
         [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Text)]
         [Display(Name = "Verification Code")]

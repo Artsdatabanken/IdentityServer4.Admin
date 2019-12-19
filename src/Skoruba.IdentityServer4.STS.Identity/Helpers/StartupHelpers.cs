@@ -51,7 +51,10 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                 .AddViewLocalization(
                     LanguageViewLocationExpanderFormat.Suffix,
                     opts => { opts.ResourcesPath = ConfigurationConsts.ResourcesPath; })
-                .AddDataAnnotationsLocalization()
+                .AddDataAnnotationsLocalization(options => {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(DataAnnotationsSharedResource));
+                })
                 .ConfigureApplicationPartManager(m =>
                 {
                     m.FeatureProviders.Add(new GenericTypeControllerFeatureProvider<TUser, TKey>());
@@ -166,6 +169,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                     options.User.RequireUniqueEmail = true;
                     options.SignIn.RequireConfirmedEmail = true;
                 })
+                .AddErrorDescriber<IdentityErrorDescriberLocalizer>()
                 .AddEntityFrameworkStores<TIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
