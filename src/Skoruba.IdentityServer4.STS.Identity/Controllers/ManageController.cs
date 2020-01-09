@@ -74,16 +74,6 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                 return NotFound(_localizer["UserNotFound", _userManager.GetUserId(User)]);
             }
 
-            var email = user.Email;
-            if (model.Email != email)
-            {
-                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    throw new ApplicationException(_localizer["ErrorSettingEmail", user.Id]);
-                }
-            }
-
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
             {
@@ -93,10 +83,31 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                     throw new ApplicationException(_localizer["ErrorSettingPhone", user.Id]);
                 }
             }
-            
+
+            var email = user.Email;
+            IdentityResult setEmailResult = null;
+            if (model.Email != email)
+            {
+                setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
+                if (!setEmailResult.Succeeded)
+                {
+                    throw new ApplicationException(_localizer["ErrorSettingEmail", user.Id]);
+                }
+            }
+
             await UpdateUserClaimsAsync(model, user);
 
             StatusMessage = _localizer["ProfileUpdated"];
+
+            if (setEmailResult != null)
+            {
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, HttpContext.Request.Scheme);
+
+                await _emailSender.SendEmailAsync(model.Email, _localizer["ConfirmEmailTitle"], _localizer["ConfirmEmailBody", HtmlEncoder.Default.Encode(callbackUrl)]);
+
+                return RedirectToAction("ConfirmEmailSent", "Account", new { email = model.Email });
+            }
 
             return RedirectToAction(nameof(Index));
         }

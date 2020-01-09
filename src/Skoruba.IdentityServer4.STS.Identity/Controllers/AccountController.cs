@@ -265,7 +265,15 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmailSent(string email)
         {
-            await Task.CompletedTask;
+            if (User?.Identity.IsAuthenticated == true)
+            {
+                // delete local authentication cookie
+                await _signInManager.SignOutAsync();
+
+                // raise the logout event
+                await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
+            }
+
             return View("ConfirmEmailSent", email);
         }
 

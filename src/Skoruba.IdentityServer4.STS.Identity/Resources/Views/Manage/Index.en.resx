@@ -165,4 +165,7 @@
   <data name="LastName" xml:space="preserve">
     <value>Last name</value>
   </data>
+  <data name="EmailChangeConsequences" xml:space="preserve">
+    <value>(If you change your email address, you will be logged out and will not be able to log in again until the new email address is confirmed)</value>
+  </data>
 </root>
