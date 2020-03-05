@@ -74,6 +74,8 @@ namespace Skoruba.IdentityServer4.STS.Identity
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCookiePolicy();
+
             app.UseCors("AllowOrigin");
 
             // Handle deployment behind a reverse proxy

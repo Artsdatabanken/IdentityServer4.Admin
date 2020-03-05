@@ -230,6 +230,8 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
         /// <returns></returns>
         public static IServiceCollection ConfigureRootConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            services.ConfigureNonBreakingSameSiteCookies();
+
             services.AddOptions();
 
             services.Configure<AdminConfiguration>(configuration.GetSection(ConfigurationConsts.AdminConfigurationKey));
