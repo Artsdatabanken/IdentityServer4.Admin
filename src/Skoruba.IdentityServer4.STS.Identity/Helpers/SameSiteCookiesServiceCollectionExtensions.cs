@@ -68,6 +68,10 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                 {
                     options.SameSite = Unspecified;
                 }
+                else if (httpContext.Request.IsHttps)
+                {
+                    options.Secure = true;
+                }
             }
         }
 
