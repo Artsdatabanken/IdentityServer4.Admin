@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Configuration;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
@@ -22,8 +23,16 @@ namespace Skoruba.IdentityServer4.STS.Identity.Services
                 Port = _configuration.Port,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 EnableSsl = _configuration.UseSSL,
-                Credentials = new System.Net.NetworkCredential(_configuration.Login, _configuration.Password)
             };
+
+            if (!string.IsNullOrWhiteSpace(configuration.Login) && !string.IsNullOrWhiteSpace(_configuration.Password))
+            {
+                _client.Credentials = new System.Net.NetworkCredential(_configuration.Login, _configuration.Password);
+            }
+            else
+            {
+                _client.UseDefaultCredentials = true;
+            }
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
@@ -31,7 +40,21 @@ namespace Skoruba.IdentityServer4.STS.Identity.Services
             _logger.LogInformation($"Sending email: {email}, subject: {subject}, message: {htmlMessage}");
             try
             {
-                var mail = new MailMessage(_configuration.Login, email);
+                MailMessage mail;
+
+                if (!string.IsNullOrWhiteSpace(_configuration.Login))
+                {
+                    mail = new MailMessage(_configuration.Login, email);
+                }
+                else if (!string.IsNullOrWhiteSpace(_configuration.Sender))
+                {
+                    mail = new MailMessage(_configuration.Sender, email);
+                }
+                else
+                {
+                    throw new ConfigurationErrorsException("Error in SMTP configuration. Login or sender not defined.");
+                }
+
                 mail.IsBodyHtml = true;
                 mail.Subject = subject;
                 mail.Body = htmlMessage;

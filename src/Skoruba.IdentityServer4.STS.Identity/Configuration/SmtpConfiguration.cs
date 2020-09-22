@@ -7,5 +7,6 @@
         public string Password { get; set; }
         public int Port { get; set; } = 587; // default smtp port
         public bool UseSSL { get; set; } = true;
+        public string Sender { get; set; }
     }
 }
