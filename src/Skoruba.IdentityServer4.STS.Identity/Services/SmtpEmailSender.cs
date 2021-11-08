@@ -42,13 +42,13 @@ namespace Skoruba.IdentityServer4.STS.Identity.Services
             {
                 MailMessage mail;
 
-                if (!string.IsNullOrWhiteSpace(_configuration.Login))
-                {
-                    mail = new MailMessage(_configuration.Login, email);
-                }
-                else if (!string.IsNullOrWhiteSpace(_configuration.Sender))
+                if (!string.IsNullOrWhiteSpace(_configuration.Sender))
                 {
                     mail = new MailMessage(_configuration.Sender, email);
+                }
+                else if (!string.IsNullOrWhiteSpace(_configuration.Login))
+                {
+                    mail = new MailMessage(_configuration.Login, email);
                 }
                 else
                 {
